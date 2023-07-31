@@ -1,5 +1,33 @@
 import os
 
+def verif_user(users):
+
+    while True:
+
+        cpf = input("CPF: ")
+
+        for id, verif in enumerate(users):
+
+            cpf_verif = verif["cpf"]
+
+            if cpf == cpf_verif:
+                return id
+
+
+
+def verif_cpf(users, cpf):
+
+    for verif in users:
+
+        cpf_verif = verif["cpf"]
+
+        if cpf == cpf_verif:
+            print("Esse cpf já existe!")
+            return False
+
+    return True
+
+
 def criar_user(users):
 
     user = {}
@@ -7,32 +35,20 @@ def criar_user(users):
     user["nome"] = input("Nome: ")
     user["nascimento"] = input("Data de nascimento: ")
 
-    count = 0
     while True:
-
         cpf = input("CPF: ")
-
-        for verif in users:
-
-            cpf_verif = verif["cpf"]
-
-            if cpf == cpf_verif:
-                count = 1
-
-        if count == 0:
-            user["cpf"] = cpf
+        if verif_cpf(users, cpf):
             break
 
-        print("Esse cpf já existe!")
-        count = 0
-
+    user["cpf"] = cpf
     user["endereço"] = input("Endereço: ")
-    user["contas"] = []
 
     return user
 
 
-def criar_conta:
+# def criar_conta(users):
+
+#     if len(users) > 0:
 
 
 
@@ -78,6 +94,7 @@ users = []
 saldo = 0
 LIMITE_SAQUE = 3
 n_saque = 0
+n_conta = 0
 ext = ""
 
 menu = """
@@ -106,7 +123,12 @@ while True:
 
     elif op == 2:
 
+        n_conta += 1
+        users[verif_user(users)]["conta"] = [n_conta, "0001"]
 
+        print(users)
+
+        input()
 
     elif op == 3:
 
